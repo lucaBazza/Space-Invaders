@@ -15,9 +15,12 @@ public class DataPersistanceManager : MonoBehaviour
     [Header("Cloud Storage Config")]
     [SerializeField] private bool useFirebase;
 
-    [Header("NodeJS Storage Config")]
-    [SerializeField] private bool useNodeJS;
+    [Header("SQL Storage Config")]
+    [SerializeField] private bool useSQL;
     [SerializeField] private string urlEndpoint;
+
+    [Header("HTTP Req Storage Config")]
+    [SerializeField] private bool useHttpRequest;
 
     private GameData gameData;
     
@@ -28,6 +31,8 @@ public class DataPersistanceManager : MonoBehaviour
     private FileDataHandler fileDataHandler;
 
     private FirebaseDataHandler firebaseDataHandler;
+
+    private SQLDataHandler sqlDataHandler;
 
     void Awake()
     {
@@ -40,6 +45,7 @@ public class DataPersistanceManager : MonoBehaviour
     {
         this.fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.firebaseDataHandler = new FirebaseDataHandler();
+        this.sqlDataHandler = new SQLDataHandler("localhost");   // 127.0.0.1:3306
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
@@ -58,6 +64,9 @@ public class DataPersistanceManager : MonoBehaviour
         {
             this.gameData = await firebaseDataHandler.Load();
         }
+
+        if (useSQL)
+            this.gameData = sqlDataHandler.Load();
 
         if(this.gameData == null)
         {

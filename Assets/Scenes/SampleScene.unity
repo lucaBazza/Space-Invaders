@@ -1843,11 +1843,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30c60ae90cc44c56b0507b4f8a2abdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveGameOrdersTodo: []
   fileName: data.game
   useEncryption: 0
-  useFirebase: 1
-  useNodeJS: 0
-  urlEndpoint: 
+  useFirebase: 0
+  useSQL: 1
+  urlEndpoint: localhost
 --- !u!1 &1569756229
 GameObject:
   m_ObjectHideFlags: 0
