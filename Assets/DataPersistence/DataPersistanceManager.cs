@@ -34,6 +34,8 @@ public class DataPersistanceManager : MonoBehaviour
 
     private SQLDataHandler sqlDataHandler;
 
+    private HttpDataHandler httpDataHandler;
+
     void Awake()
     {
         if(instance != null)
@@ -45,7 +47,8 @@ public class DataPersistanceManager : MonoBehaviour
     {
         this.fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.firebaseDataHandler = new FirebaseDataHandler();
-        this.sqlDataHandler = new SQLDataHandler("localhost");   // 127.0.0.1:3306
+        this.sqlDataHandler = new SQLDataHandler("localhost");
+        this.httpDataHandler = new HttpDataHandler("http://localhost:80/api");
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
@@ -61,12 +64,13 @@ public class DataPersistanceManager : MonoBehaviour
         this.gameData = fileDataHandler.Load();
 
         if (useFirebase)
-        {
             this.gameData = await firebaseDataHandler.Load();
-        }
 
         if (useSQL)
             this.gameData = sqlDataHandler.Load();
+
+        if (useHttpRequest)
+            this.gameData = await httpDataHandler.Load();
 
         if(this.gameData == null)
         {
