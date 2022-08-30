@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use App\Models\Listing;
+use App\Models\Player;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,18 +17,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         # auto generate seed data for database
         \App\Models\Listing::factory(10)->create();
+        \App\Models\Player::factory(50)->create();        
+        // \App\Models\User::factory(10)->create();
 
         # manual generate date for database
         /*
+        \App\Models\User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
         Listing::create([
             'title' => 'Laravel test',
             'tags' => 'laravel, testing, javascript',

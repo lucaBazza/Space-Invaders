@@ -34,14 +34,15 @@ class PlayerFactory extends Factory
         */
 
         return [
-            'alienKilledTotal' => $this->faker->optional()->passthrough(mt_rand(0, 10000)),
-            'bulletsFired' => $this->faker->optional()->passthrough(mt_rand(50, 1000)),
-            'deadsPlayer' => $this->faker->optional()->passthrough(mt_rand(5, 15)),
-            'level' => $this->faker->optional()->passthrough(mt_rand(1, 5)),
-            'highestScore' => $this->faker->optional()->passthrough(mt_rand(0, 10000)),
-            'globalPrecision' => $this->faker->optional()->passthrough(mt_rand(5, 100)),
-            'timePlayedTotal' => $this->faker->optional()->passthrough(mt_rand(1000, 10000)),
-            'sessionTotal' => $this->faker->optional()->passthrough(mt_rand(0, 50)),
+            'uuid' => $this->faker->uuid(),
+            'alienKilledTotal' => $this->faker->numberBetween(0, 10000),
+            'bulletsFired' => $this->faker->numberBetween(50, 1000),
+            'deadsPlayer' => $this->faker->numberBetween(5, 15),
+            'level' => $this->faker->numberBetween(1, 5),
+            'highestScore' => $this->faker->numberBetween(0, 10000),
+            'globalPrecision' => $this->faker->numberBetween(5, 100),
+            'timePlayedTotal' => $this->faker->numberBetween(1000, 10000),
+            'sessionTotal' => $this->faker->numberBetween(0, 50),
             'userName' => $this->faker->name(),
             'gameDataTime' => $this->faker->paragraph(5),
             'gameVersion' => '0.1-alpha'
