@@ -1847,8 +1847,10 @@ MonoBehaviour:
   fileName: data.game
   useEncryption: 0
   useFirebase: 0
-  useSQL: 1
-  urlEndpoint: localhost
+  useSQL: 0
+  urlEndpointSQL: localhost
+  useHttpRequest: 1
+  urlEndpointHttp: http://192.168.1.156/api/spaceinvaders
 --- !u!1 &1569756229
 GameObject:
   m_ObjectHideFlags: 0

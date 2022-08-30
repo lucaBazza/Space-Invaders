@@ -17,10 +17,11 @@ public class DataPersistanceManager : MonoBehaviour
 
     [Header("SQL Storage Config")]
     [SerializeField] private bool useSQL;
-    [SerializeField] private string urlEndpoint;
+    [SerializeField] private string urlEndpointSQL;
 
     [Header("HTTP Req Storage Config")]
     [SerializeField] private bool useHttpRequest;
+    [SerializeField] private string urlEndpointHttp;
 
     private GameData gameData;
     
@@ -47,8 +48,8 @@ public class DataPersistanceManager : MonoBehaviour
     {
         this.fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.firebaseDataHandler = new FirebaseDataHandler();
-        this.sqlDataHandler = new SQLDataHandler("localhost");
-        this.httpDataHandler = new HttpDataHandler("http://localhost:80/api");
+        this.sqlDataHandler = new SQLDataHandler(urlEndpointHttp);
+        this.httpDataHandler = new HttpDataHandler(urlEndpointHttp);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
@@ -60,14 +61,13 @@ public class DataPersistanceManager : MonoBehaviour
 
     public async void LoadGame()
     {
-
         this.gameData = fileDataHandler.Load();
 
         if (useFirebase)
             this.gameData = await firebaseDataHandler.Load();
 
         if (useSQL)
-            this.gameData = sqlDataHandler.Load();
+           this.gameData = sqlDataHandler.Load();
 
         if (useHttpRequest)
             this.gameData = await httpDataHandler.Load();
@@ -86,7 +86,7 @@ public class DataPersistanceManager : MonoBehaviour
         Debug.Log($"Loaded level count = {gameData.level}");
     }
 
-    public void SaveGame()
+    public async void SaveGame()
     {
         foreach(IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
@@ -97,6 +97,9 @@ public class DataPersistanceManager : MonoBehaviour
 
         if(useFirebase)
             firebaseDataHandler.Save(gameData, str => Debug.Log(str) );
+
+        if (useHttpRequest)
+            await httpDataHandler.Save(gameData);
     }
 
     private void OnApplicationQuit() => SaveGame();
