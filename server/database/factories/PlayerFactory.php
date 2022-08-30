@@ -32,7 +32,7 @@ class PlayerFactory extends Factory
         this.gameDataTime = DateTime.Now.ToString("yyyy-MM-dd h:mm:ss");
         this.gameVersion = "";
         */
-
+        // $date = $this->faker->dateTimeInInterval('-1 week', '+3 days');
         return [
             'uuid' => $this->faker->uuid(),
             'alienKilledTotal' => $this->faker->numberBetween(0, 10000),
@@ -44,7 +44,8 @@ class PlayerFactory extends Factory
             'timePlayedTotal' => $this->faker->numberBetween(1000, 10000),
             'sessionTotal' => $this->faker->numberBetween(0, 50),
             'userName' => $this->faker->name(),
-            'gameDataTime' => $this->faker->paragraph(5),
+            // 'gameDataTime' => $this->faker->paragraph(5),
+            'gameDataTime' => date_format( $this->faker->dateTimeInInterval('-1 week', '+3 days') , 'Y-m-d H:i:s'),
             'gameVersion' => '0.1-alpha'
         ];
     }

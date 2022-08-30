@@ -11,12 +11,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"/>
         <script src="https://cdn.tailwindcss.com"></script>
-        <script> tailwind.config = { theme: {
-                    extend: {
-                        colors: { laravel: "#ef3b2d", },
-                    },
-                },};
-        </script>
+        <script> tailwind.config = { theme: { extend: { colors: { laravel: "#ef3b2d" } } } } </script>
         <title>Space Invaders WebApp</title>
     </head>
     <body class="mb-48">
@@ -25,13 +20,18 @@
                 <img class="w-24" src="{{asset('images/logoalien.jpg')}}" alt="" class="logo"/>
             </a>
             <ul class="flex space-x-6 mr-6 text-lg">
-                <li>
+<!--            <li>
                     <a href="register.html" class="hover:text-laravel">
                         <i class="fa-solid fa-user-plus"></i> Register</a>
+                </li> -->
+                <li>
+                    <a href="/stats" class="hover:text-laravel">
+                        <i class="fa-solid fa-bar-chart"></i> Stats</a>
                 </li>
+                
                 <li>
                     <a href="login.html" class="hover:text-laravel">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>Login</a>
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> login rs</a>
                 </li>
             </ul>
         </nav>
@@ -40,8 +40,8 @@
             @yield('content')
         </main>
         <footer class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center">
-            <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
-            <a href="create.html" class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Post Job</a>
+            <p class="ml-2">Copyright lucabazzanella.com &copy; 2022, All Rights reserved</p>
+            <!-- <a href="create.html" class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Post Job</a> -->
         </footer>
     </body>
 </html>
