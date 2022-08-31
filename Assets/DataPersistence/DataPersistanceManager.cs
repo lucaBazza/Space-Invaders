@@ -98,6 +98,9 @@ public class DataPersistanceManager : MonoBehaviour
         if(useFirebase)
             firebaseDataHandler.Save(gameData, str => Debug.Log(str) );
 
+        if (useSQL)
+            sqlDataHandler.Save(gameData);
+
         if (useHttpRequest)
             await httpDataHandler.Save(gameData);
     }

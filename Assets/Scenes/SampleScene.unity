@@ -1845,7 +1845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveGameOrdersTodo: []
   fileName: data.game
-  useEncryption: 0
+  useEncryption: 1
   useFirebase: 0
   useSQL: 0
   urlEndpointSQL: localhost

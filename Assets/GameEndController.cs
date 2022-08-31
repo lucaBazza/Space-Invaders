@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/*
+*    
+*/
 public class GameEndController : MonoBehaviour
 {
     public Text gameEndHeader;
@@ -37,8 +40,13 @@ public class GameEndController : MonoBehaviour
         if( User.instance.isLastLevel() && hasWin ){
             continue_restart_btn.GetComponentInChildren<Text>().text = "";
         }
-        
-        DatabaseManager.UpdateUser(); 
+
+        // LEGACY savegame
+        DatabaseManager.UpdateUser();
+
+        // ACTUAL SAVEGAME
+        DataPersistanceManager.instance.SaveGame();
+
 
         StartCoroutine( DatabaseManager.getQueryTops(DatabaseManager.USER_COL_HIGHSCORE, res => topPlayersText.text = $"Top ranked players:\n{res}" ));
         StartCoroutine( DatabaseManager.getQueryTops(DatabaseManager.USER_COL_PRECISION, res => topSnipersText.text = $"Top snipers players:\n{res}" ) );
