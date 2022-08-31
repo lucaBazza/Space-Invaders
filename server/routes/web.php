@@ -50,7 +50,10 @@ Route::get('/', [ListingController::class,'index']);
 // show create form
 Route::get('/listings/create', [ListingController::class,'create']);
 
-# http://localhost/listings/1       // single listing
+// store listing data
+Route::post('/listings', [ListingController::class,'store']);
+
+# http://localhost/listings/1       // single listing as last because otherwise intercept other route::get listings
 Route::get('/listings/{listing}', [ListingController::class,'show']);
 
 
