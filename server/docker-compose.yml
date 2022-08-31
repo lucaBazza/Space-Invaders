@@ -31,6 +31,7 @@ services:
             - mailhog
             - minio
             #- selenium
+
     mysql:
         image: 'mysql/mysql-server:8.0'
         container_name: spaceinvaders_mysql
@@ -52,6 +53,7 @@ services:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+
     redis:
         image: 'redis:alpine'
         ports:
@@ -64,6 +66,7 @@ services:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
+
     mailhog:
         image: 'mailhog/mailhog:latest'
         ports:
@@ -90,12 +93,27 @@ services:
             - 'sailminio:/datal'
         networks:
             - sail
+
+    dynamodb:
+        image:  amazon/dynamodb-local
+        container_name: spaceinvaders-dynamodb
+        hostname: dynamodb
+        restart: always
+        volumes:
+            - './my-dynamodb-data:/home/dynamodblocal/data'
+        ports:
+            - 8000:8000
+        command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
+        #networks:
+        #    - sail
+        
     #selenium:
     #    image: 'seleniarm/standalone-chromium'
     #    volumes:
     #        - '/dev/shm:/dev/shm'
     #    networks:
     #        - sail
+
 networks:
     sail:
         driver: bridge
@@ -106,3 +124,5 @@ volumes:
         driver: local
     sailminio:
         driver: local
+    #dynamodb:
+    #    driver: local

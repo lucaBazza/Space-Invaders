@@ -16,6 +16,11 @@ docker run --rm \
 
 check .env file exists with all credential (you can copy and rename .env.example if missing)
 
+Sail binary as wrapper as it introduces several required env vars for the build. Useful if you've purged your built image, or your built image laravel.test was corrupted (unlikely) and docker-compose do not rebuild without telling it to do so,
+```
+./vendor/bin/sail build
+```
+
 ## General API endpoints
 
 ```<url-server-host>/api/player?name=mario&....```
