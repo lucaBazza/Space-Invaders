@@ -20,16 +20,26 @@ Sail binary as wrapper as it introduces several required env vars for the build.
 ```
 ./vendor/bin/sail build
 ```
+.
 
+---
 ## General API endpoints
 
 ```<url-server-host>/api/player?name=mario&....```
 
+.
+
+---
 ## generate model class and seed with factory datas
 
-php artisan make:model Player
-php artisan make:factory PlayerFactory
-php artisan make:migration create_players_table
-php artisan migrate:refresh --seed
+```php artisan make:model Player```
+
+```php artisan make:controller ListingController```
+
+```php artisan make:factory PlayerFactory```
+
+```php artisan make:migration create_players_table```
+
+```php artisan migrate:refresh --seed```
 
 

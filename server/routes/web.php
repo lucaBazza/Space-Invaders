@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Player;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,56 +17,8 @@ use App\Models\Player;
 |
 */
 
-Route::get('/', function () {
-    
-    // return view('welcome');
-    
-    return view('spacehome',[
-        'heading' => 'All recent players',
-        'players' => Player::all()
-    ]);
-    /*
-    return view('listings',[
-        'heading' => 'Latest Listings',
-        'listings' => Listing::all()
-        //[
-        //    [
-        //        'id' => 1,
-        //        'title' => 'Listing one',
-        //        'description' => 'lalalala'
-        //    ],
-        //    [
-        //        'id' => 2,
-        //        'title' => 'Listing 2',
-        //        'description' => 'lulululu'
-        //    ],
-        //]
-    ]);
-    */
-});
 
-# http://localhost/search?name=roberto&city=milano
-Route::get('/search', function(Request $request){
-    return $request->name . ' ' . $request->city;
-});
-
-# http://localhost/listings/1
-Route::get('/listings/{listing}', function(Listing $listing){
-    return view('listing', [
-        'listing' => $listing
-    ]);
-});
-/* Route::get('/listings/{id}', function($id){
-    $listing =  Listing::find($id);
-    if($listing){
-        return view('listing', [
-            'listing' => $listing
-        ]);
-    }
-    else { abort('404'); }
-}); */
-
-
+/*
 # http://localhost/players/1
 Route::get('/players/{player}', function(Player $player){
     return view('player', [
@@ -76,6 +29,37 @@ Route::get('/players/{player}', function(Player $player){
 Route::get('/stats', function(){
     return view('stats');
 });
+
+Route::get('/', function () {
+    return view('spacehome',[
+        'heading' => 'All recent players',
+        'players' => Player::all()
+    ]);
+});
+*/
+
+
+
+
+/**
+ *  use a controller to handle routing
+ */
+# http://localhost/
+Route::get('/', [ListingController::class,'index']);
+
+# http://localhost/listings/1
+Route::get('/listings/{listing}', [ListingController::class,'show']);
+
+/*      common resource routes (when using a Controller) :
+index - show all listings
+show - show single listing
+create - show form to create new listing
+store - store new listing
+edit - show form to edit listing
+update - update listing
+destroy - delete listing
+*/
+
 
 
 
@@ -103,3 +87,40 @@ Route::get('/post/{id}', function($id){
     
     return Response('<h1>post: '.$id.'</h1>');
 })->where('id','[0-9]+');
+
+# http://localhost/search?name=roberto&city=milano
+Route::get('/search', function(Request $request){
+    return $request->name . ' ' . $request->city;
+});
+
+
+/* Route::get('/listings/{id}', function($id){
+    $listing =  Listing::find($id);
+    if($listing){
+        return view('listing', [
+            'listing' => $listing
+        ]);
+    }
+    else { abort('404'); }
+}); */
+
+/*Route::get('/', function () {
+    return view('listings',[
+        'heading' => 'Latest Listings',
+        'listings' => [
+            [
+                'id' => 1,
+                'title' => 'Listing one',
+                'description' => 'lalalala'
+            ],
+            [
+                'id' => 2,
+                'title' => 'Listing 2',
+                'description' => 'lulululu'
+            ],
+        ]
+    ]);
+});
+Route::get('/', function () {   
+    return view('welcome');
+}*/

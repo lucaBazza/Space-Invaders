@@ -11,7 +11,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"/>
         <script src="https://cdn.tailwindcss.com"></script>
-        <script> tailwind.config = { theme: { extend: { colors: { laravel: "#ef3b2d" } } } } </script>
+        <script> tailwind.config = {theme: {extend: {colors: {laravel: "#ef3b2d" } } } } </script>
         <title>Space Invaders WebApp</title>
     </head>
     <body class="mb-48">
@@ -20,10 +20,6 @@
                 <img class="w-24" src="{{asset('images/logoalien.jpg')}}" alt="" class="logo"/>
             </a>
             <ul class="flex space-x-6 mr-6 text-lg">
-<!--            <li>
-                    <a href="register.html" class="hover:text-laravel">
-                        <i class="fa-solid fa-user-plus"></i> Register</a>
-                </li> -->
                 <li>
                     <a href="/stats" class="hover:text-laravel">
                         <i class="fa-solid fa-bar-chart"></i> Stats</a>
