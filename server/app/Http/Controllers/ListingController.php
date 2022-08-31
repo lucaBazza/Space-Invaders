@@ -8,10 +8,10 @@ use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
 {
-    //show listings with querys on tags, searchbar
+    //show listings with querys on tags, searchbar. 8 results for each page
     public function index(){
         return view('listings.index',[
-            'listings' => Listing::latest()->filter(request(['tag','search']))->get()  // Listing::all()
+            'listings' => Listing::latest()->filter(request(['tag','search']))->paginate(8)  // Listing::all()
         ]);
     }
 
