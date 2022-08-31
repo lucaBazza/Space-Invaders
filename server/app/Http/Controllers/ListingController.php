@@ -39,7 +39,8 @@ class ListingController extends Controller
             'description'=>'required'
         ]);
         Listing::create($formFields);
-        return redirect('/');
+        // Session::flash('message','Listing create');
+        return redirect('/')->with('message','Listing created succesfully!');
     }
 }
 
