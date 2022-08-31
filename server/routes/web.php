@@ -44,12 +44,14 @@ Route::get('/', function () {
 /**
  *  use a controller to handle routing
  */
-# http://localhost/
+# http://localhost/                 // all listings
 Route::get('/', [ListingController::class,'index']);
 
-# http://localhost/listings/1
-Route::get('/listings/{listing}', [ListingController::class,'show']);
+// show create form
+Route::get('/listings/create', [ListingController::class,'create']);
 
+# http://localhost/listings/1       // single listing
+Route::get('/listings/{listing}', [ListingController::class,'show']);
 
 
 

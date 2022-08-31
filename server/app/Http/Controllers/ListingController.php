@@ -7,10 +7,10 @@ use App\Models\Listing;
 
 class ListingController extends Controller
 {
-    //show all listings
+    //show listings with querys on tags, searchbar
     public function index(){
         return view('listings.index',[
-            'listings' => Listing::all()
+            'listings' => Listing::latest()->filter(request(['tag','search']))->get()  // Listing::all()
         ]);
     }
 
@@ -19,6 +19,11 @@ class ListingController extends Controller
         return view('listings.show', [
             'listing' => $listing
         ]);
+    }
+
+    // show create form
+    public function create(){
+        return view('listings.create');
     }
 }
 
