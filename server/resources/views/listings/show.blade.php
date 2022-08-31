@@ -1,4 +1,4 @@
-@extends('layout')
+<x-layout>
 
 @section('content')
 @include('partials._search')
@@ -8,7 +8,6 @@
 </a>
 <div class="mx-4">
     <x-card class="p-10">
-    <!-- <div class="bg-gray-50 border border-gray-200 p-10 rounded"> -->
         <div class="flex flex-col items-center justify-center text-center">
             <img class="w-48 mr-6 mb-6"
                 src="{{asset('images/noplayerimage.png')}}" alt=""/>
@@ -44,7 +43,6 @@
             </div>
         </div>
     </x-card>
-    <!-- </div> -->
 </div>
 
-@endsection
+</x-layout>

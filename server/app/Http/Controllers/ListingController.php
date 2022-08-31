@@ -28,3 +28,17 @@ class ListingController extends Controller
  *  return view('listings') usa il componente nella cartella resources/views, 
  *      per usare le sotto-cartelle usare es.listings.destroy
  */
+
+ /*      
+                common resource routes (when using a Controller)
+
+    index - show all listings
+    show - show single listing
+    create - show form to create new listing
+    store - store new listing
+    edit - show form to edit listing
+    update - update listing
+    destroy - delete listing
+
+*/
+
