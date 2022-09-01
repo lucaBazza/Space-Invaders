@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Player;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,10 +63,15 @@ Route::put('/listings/{listing}', [ListingController::class,'update']);
 // Delete listing
 Route::delete('/listings/{listing}', [ListingController::class,'destroy']);
 
-# http://localhost/listings/1       // single listing as last because otherwise intercept other route::get listings
+# http://localhost/listings/1       
+// Single listing as last because otherwise intercept other route::get listings
 Route::get('/listings/{listing}', [ListingController::class,'show']);
 
 
+// Show register/create form
+Route::get('/register',[UserController::class,'create']);
+
+Route::post('/users',[UserController::class,'store']);
 
 
 /**
