@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Listing;
 use App\Models\Player;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,10 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        # auto generate seed data for database
-        \App\Models\Listing::factory(10)->create();
+        # auto generate seed data for database, now with constrained
+        $user = User::factory()->create([
+            'name' => 'John Dee',
+            'email' => 'john@gmail.com'
+        ]);
+        //\App\Models\User::factory(10)->create();
+
+        \App\Models\Listing::factory(10)->create([  // every fake data exist has John dee as foreign key 'user_id'
+            'user_id' => $user->id
+        ]);
+
         \App\Models\Player::factory(50)->create();        
-        // \App\Models\User::factory(10)->create();
 
         # manual generate date for database
         /*
