@@ -42,4 +42,6 @@ Sail binary as wrapper as it introduces several required env vars for the build.
 
 ```php artisan migrate:refresh --seed```
 
-
+```php artisan storage:link``` 
+ - create and connect link to path public/storage 
+ - es. ```http://localhost/storage/logos/123456.webp```
