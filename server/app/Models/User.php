@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Listing;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -44,6 +46,6 @@ class User extends Authenticatable
 
     // Relationship with listings
     public function listings(){
-        return $this->hasMany(Listings::class,'user_id');
+        return $this->hasMany(Listing::class,'user_id');
     }
 }
