@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
+using Firebase.Firestore;
 
 public class FirebaseDataHandler
 {
@@ -23,8 +24,17 @@ public class FirebaseDataHandler
 
     public FirebaseDataHandler()
     {
-        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
         userId = SystemInfo.deviceUniqueIdentifier + "-test";
+        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+        /*
+        if ( Application.isEditor )
+        {
+            Debug.Log("Firebase test run on localhost!");
+            FirebaseFirestore firestore = FirebaseFirestore.DefaultInstance;
+            firestore.Settings.Host = "localhost:8080";
+            firestore.Settings.SslEnabled = false;
+        }
+        */
     }
 
     private IEnumerator queryFirebaseUser()

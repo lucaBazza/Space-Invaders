@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: npm run dev
+    #volumes:
+    #  - .:.src
+    ports:
+      - "5000:5000"
+      - "9005:9005"
+
+# https://hovancik.net/blog/2020/08/27/working-with-firebase-tools-from-docker-with-docker-compose/
